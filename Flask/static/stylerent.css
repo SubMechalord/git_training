@@ -1,0 +1,115 @@
+/* Body styles for rent.html */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+/* Title box styles */
+.title-box {
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 2.5em;
+    color: #2c3e50;
+    text-align: center;
+}
+
+/* Form step styles */
+.home1 {
+    width: 100%;
+    max-width: 400px; /* Max width for form steps */
+    margin-bottom: 30px;
+}
+
+/* Step styles */
+.form-step {
+    display: none; /* Hide all steps by default */
+}
+
+.hidden-radio:checked + .form-step {
+    display: block; /* Show the checked step */
+}
+
+/* Input styles */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Button label styles */
+.button-label {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.button-label:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Rent box styles */
+.rent-box {
+    width: 100%;
+    max-width: 600px; /* Max width for rent box */
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 1.5em;
+    color: #2c3e50;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Home button styles */
+button[name="home-button"] {
+    margin-top: 20px;
+    background-color: #2ecc71; /* Green background */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[name="home-button"]:hover {
+    background-color: #27ae60; /* Darker green on hover */
+}

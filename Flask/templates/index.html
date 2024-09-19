@@ -6,13 +6,27 @@
     </title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
-    <h1>Welcome to the Motorcycle rental website</h1>
+<body class="body-box">
+    <div class="title-box">
+    <h1 class="title">Welcome to the Motorcycle rental website</h1>
+    </div>
+    <br>
+    <div class="button-box">
     <form method="post">
         <div class="home">
-            <button type="submit" name="button" value="rent">Put up your Motorcycle for rent</button>
-            <button type="submit" name="button" value="view">View Motorcycles for rent</button>
+            <div class="buttons">
+                <div class="item">
+                <button type="submit" name="button" value="rent">Put up your Motorcycle for rent</button>
+                </div>
+                <div class="item">
+                <button type="submit" name="button" value="update">Edit existing Motorcycles</button>
+                </div>
+                <div class="item">
+                    <button type="submit" name="button" value="booked">View Booked Motorcycles</button>
+                </div>
+            </div>
         </div>
     </form>
+    </div>
 </body>
 </html>

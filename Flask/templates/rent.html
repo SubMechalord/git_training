@@ -4,20 +4,36 @@
     <title>
         Greetings
     </title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/stylerent.css">
 </head>
 <body>
-    <h1>Welcome to the Motorcycle rental website</h1>
+    <div class="title-box">
+        <h1 class="title">Welcome to the Motorcycle rental website</h1>
+        </div>
     <form method="post">
         <div class="home1">
-            <h1>Enter your motorcycle brand name: </h1><input name="name"/>
-            <br>
-            <h1>Enter your motorcycle model: </h1><input name="model"/>
-            <br>
-            <button>Submit</button>
+            <input type="radio" name="step" id="step1-radio" class="hidden-radio" checked>
+            <div class="form-step" id="step1">
+                <label for="field1">Enter your motorcycle brand name: </label>
+                <input type="text" id="field1" name="name"/>
+                <br><br>
+                <label for="step2-radio" class="button-label">Next</label>
+            </div>
+            <input type="radio" name="step" id="step2-radio" class="hidden-radio">
+            <div class="form-step" id="step2">
+                <label for="field2">Enter your motorcycle model: </label>
+                <input type="text" id="field2" name="model"/>
+                <br><br>
+                <label for="step3-radio" class="button-label">Next</label>
+            </div>
+            <input type="radio" name="step" id="step3-radio" class="hidden-radio">
+            <div class="form-step" id="step3">
+                <button type="submit">Submit</button>
+            </div>
         </div>
         <div class="home">
-            <h1>These are the motorcycles available for rent:</h1><br>
+            <div class="rent-box"><h1>These are the motorcycles available for rent:</h1><br>
+            <br>
             <table>
                 <tr>
                   <th>S.No.</th>
@@ -26,12 +42,13 @@
                 </tr>
                 {% for i in motors %}
                 <tr>
-                    <td>{{i.id}}</td>
+                    <td>{{loop.index}}</td>
                   <td>{{ i.name }}</td>
                   <td>{{i.model}}</td>
                 </tr>
                 {% endfor %}
               </table>
+              </div>
         </div>
         <button name="home-button" value="home">Home</button>
     </form>

@@ -1,0 +1,110 @@
+/* Body styles for update.html */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+/* Title box styles */
+.title-box {
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 2.5em;
+    color: #2c3e50;
+    text-align: center;
+}
+
+/* Update box styles */
+.update-box {
+    width: 100%;
+    max-width: 600px; /* Max width for update box */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 1.5em;
+    color: #2c3e50;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Action column */
+th.action {
+    width: 150px; /* Fixed width for action column */
+}
+
+/* Home button styles */
+button[name="home-button"] {
+    margin-top: 20px;
+    background-color: #2ecc71; /* Green background */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[name="home-button"]:hover {
+    background-color: #27ae60; /* Darker green on hover */
+}
+/* Action button styles */
+.action-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+button {
+    background-color: #3498db; /* Blue background */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.9em; /* Adjust font size */
+}
+
+button:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
+button:active {
+    transform: scale(0.95); /* Shrink button on click */
+}
+
+/* Home button styles */
+button[name="home-button"] {
+    background-color: #2ecc71; /* Green background */
+}
+
+button[name="home-button"]:hover {
+    background-color: #27ae60; /* Darker green on hover */
+}

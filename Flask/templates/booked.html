@@ -10,23 +10,20 @@
   </div>
   <form method="post">
     <div class="update-box">
-      <h1>These are the motorcycles available for rent:</h1><br>
+      <h1>These are the motorcycles that have been booked:</h1><br>
       <table>
         <tr>
           <th>S.No.</th>
           <th>Motorcycle Name</th>
           <th>Motorcycle Model</th>
-          <th>Action</th>
         </tr>
-        {% for i in motors %}
+        {% for i in booked %}
         <tr>
           <td>{{ loop.index }}</td>
           <td>{{ i.name }}</td>
           <td>{{ i.model }}</td>
           <td class="action-buttons">
-            <button type="submit" name="edit" value="{{ i.id }}">Edit</button>
-            <button type="submit" name="book" value="{{ i.id }}">Book</button>
-            <button type="submit" name="delete" value="{{ i.id }}">Delete</button>
+            <button type="submit" name="revert" value="{{ i.id }}">Revert to inventory</button>
           </td>
         </tr>
         {% endfor %}
