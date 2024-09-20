@@ -39,12 +39,14 @@
                   <th>S.No.</th>
                   <th>Motorcycle name</th>
                   <th>Motorcycle model</th>
+                  <th>In-Stock</th>
                 </tr>
                 {% for i in motors %}
                 <tr>
                     <td>{{loop.index}}</td>
                   <td>{{ i.name }}</td>
                   <td>{{i.model}}</td>
+                  <td>{{i.count}}</td>
                 </tr>
                 {% endfor %}
               </table>

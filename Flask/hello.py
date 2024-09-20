@@ -10,15 +10,17 @@ db = SQLAlchemy(app)
 class Motor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    model = db.Column(db.String(20), nullable=False, unique=True)
-
+    model = db.Column(db.String(20), nullable=False)
+    #
+    count = db.Column(db.Integer, default=1)  
+    #
     def __repr__(self):
         return f"Name: {self.name}"
 
 class Booked(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    model = db.Column(db.String(20), nullable=False, unique=True)
+    model = db.Column(db.String(20), nullable=False)
 
     def __repr__(self):
         return f"Name: {self.name}"
@@ -68,8 +70,16 @@ def rent():
                 return redirect("/")
             if name == "" or model == "":
                 raise Exception("Enter a value")
-            new_motor = Motor(name=name, model=model)
-            db.session.add(new_motor)
+            #
+            existing_motor = Motor.query.filter_by(name=name, model=model).first()
+            if existing_motor:
+                existing_motor.count += 1  # Increment count
+            else:
+                new_motor = Motor(name=name, model=model)
+                db.session.add(new_motor)
+            #
+            # new_motor = Motor(name=name, model=model)
+            # db.session.add(new_motor)
             db.session.commit()
         motors = Motor.query.order_by(Motor.id).all()
         return render_template("rent.html", name=name, model=model, motors=motors)
@@ -88,9 +98,16 @@ def view():
             motor_id = request.form['book']
             motor_to_book = Motor.query.get(motor_id)
             if motor_to_book:
+                # new_booking = Booked(name=motor_to_book.name, model=motor_to_book.model)
+                # db.session.add(new_booking)
+                # db.session.delete(motor_to_book)
+                #
                 new_booking = Booked(name=motor_to_book.name, model=motor_to_book.model)
                 db.session.add(new_booking)
-                db.session.delete(motor_to_book)
+                motor_to_book.count -= 1  # Decrement count
+                if motor_to_book.count == 0:
+                    db.session.delete(motor_to_book)  # Remove if coun
+                #
                 db.session.commit()
                 return redirect("/update")
         elif 'edit' in request.form:
@@ -117,10 +134,23 @@ def edit(id):
             return redirect("/update")
         try:
             item = Motor.query.get_or_404(id)
+            #
+            new_name = request.form["name"]
+            new_model = request.form["model"]
+            #
             if item.name == request.form["name"] and item.model == request.form["model"]:
                 raise Exception("Same bike name entered! Provide different value")
-            item.name = request.form["name"]
-            item.model = request.form["model"]
+            # item.name = request.form["name"]
+            # item.model = request.form["model"]
+            #
+            existing_motor = Motor.query.filter_by(name=new_name, model=new_model).first()
+            if existing_motor:
+                existing_motor.count += 1  # Increment count if exists
+                db.session.delete(item)  # Remove the current item
+            else:
+                item.name = new_name
+                item.model = new_model
+            #
             db.session.commit()
             return redirect(url_for('index'))
         except Exception as e2:
@@ -137,12 +167,29 @@ def booked():
         if 'revert' in request.form:
             booked_id = request.form['revert']
             motor_to_revert = Booked.query.get(booked_id)
+            # if motor_to_revert:
+            #     item = Motor(name=motor_to_revert.name, model=motor_to_revert.model)
+            #     db.session.add(item)
+            #     db.session.delete(motor_to_revert)
+            #     db.session.commit()
+            #     return redirect("/booked")
+            #
             if motor_to_revert:
-                item = Motor(name=motor_to_revert.name, model=motor_to_revert.model)
-                db.session.add(item)
+                # Check if the motor already exists in the Motor table
+                existing_motor = Motor.query.filter_by(name=motor_to_revert.name, model=motor_to_revert.model).first()
+                
+                if existing_motor:
+                    # Increment the count if it already exists
+                    existing_motor.count += 1
+                else:
+                    # Otherwise, create a new motor entry
+                    item = Motor(name=motor_to_revert.name, model=motor_to_revert.model, count=1)
+                    db.session.add(item)
+                
                 db.session.delete(motor_to_revert)
                 db.session.commit()
                 return redirect("/booked")
+            #
     booked = Booked.query.order_by(Booked.id).all()
     return render_template("booked.html", booked=booked)
 

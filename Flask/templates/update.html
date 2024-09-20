@@ -16,6 +16,7 @@
           <th>S.No.</th>
           <th>Motorcycle Name</th>
           <th>Motorcycle Model</th>
+          <th>Available stock</th>
           <th>Action</th>
         </tr>
         {% for i in motors %}
@@ -23,6 +24,7 @@
           <td>{{ loop.index }}</td>
           <td>{{ i.name }}</td>
           <td>{{ i.model }}</td>
+          <td>{{i.count}}</td>
           <td class="action-buttons">
             <button type="submit" name="edit" value="{{ i.id }}">Edit</button>
             <button type="submit" name="book" value="{{ i.id }}">Book</button>
